@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2일차 | 제주도 디지털 워크북</title>
+  <style>
+    :root { --bg:#f7fbfd; --card:#fff; --line:#dbe8ef; --green:#3a9c7d; --green-deep:#28765e; --green-soft:#edf8f3; --ink:#23323b; --soft:#5f7480; --shadow:0 8px 18px rgba(35,50,59,.06); --radius:18px; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif; color:var(--ink); background:linear-gradient(180deg,#f3fbf7 0%,#f7fbfd 100%); }
+    .page { width:min(980px, calc(100% - 32px)); margin:0 auto; padding:24px 0 48px; }
+    .section { margin-top:20px; padding:24px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); }
+    .hero { background:linear-gradient(180deg,#eef9f5 0%,#fff 100%); }
+    .tag { display:inline-block; padding:6px 12px; border-radius:999px; background:var(--green); color:#fff; font-size:13px; font-weight:700; }
+    h1 { margin:16px 0 10px; font-size:clamp(30px,4vw,42px); color:var(--green-deep); }
+    h2 { margin:0 0 8px; font-size:24px; color:var(--green-deep); }
+    h3 { margin:0 0 8px; font-size:20px; }
+    p { margin:0; color:var(--soft); line-height:1.7; }
+    ul { margin:12px 0 0; padding-left:18px; line-height:1.75; }
+    .button { display:inline-block; margin-top:16px; padding:12px 16px; border-radius:12px; background:var(--green); color:#fff; text-decoration:none; font-size:14px; font-weight:700; border:0; cursor:pointer; }
+    .button.secondary { background:#fff; color:var(--green); border:1px solid var(--line); }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .card { padding:18px; border:1px solid var(--line); border-radius:16px; background:#fff; }
+    .card.soft { background:var(--green-soft); }
+    .card + .card { margin-top:14px; }
+    .schedule-list { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+    .schedule-item { display:grid; grid-template-columns:74px 1fr; gap:14px; align-items:center; padding:14px 16px; border-radius:14px; background:#fff; border:1px solid var(--line); box-shadow:0 2px 6px rgba(35,50,59,.03); }
+    .schedule-time { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:0 10px; border-radius:10px; font-weight:700; color:#49626f; background:#f4f8fa; }
+    .schedule-text { color:var(--ink); font-weight:600; }
+    .schedule-item.meal { background:#fff1f1; }
+    .schedule-item.meal .schedule-time { color:#b55454; background:#ffd9d9; }
+    .schedule-item.activity { background:#eef7ff; }
+    .schedule-item.activity .schedule-time { color:#2d6ea3; background:#dcebfb; }
+    .prompt-box,.upload-box { margin-top:14px; padding:16px; border:1px solid var(--line); border-radius:14px; background:#f9fcfe; }
+    .knowledge-box { margin-top:14px; padding:16px; border:1px solid #cfe2ee; border-radius:14px; background:linear-gradient(180deg,#f7fbfe 0%,#eef7fc 100%); }
+    .knowledge-title { font-size:14px; font-weight:700; color:var(--green-deep); margin-bottom:10px; }
+    .knowledge-visual { min-height:110px; padding:14px; border-radius:12px; background:linear-gradient(135deg,#dcebfb 0%,#f6fbff 100%); border:1px dashed #b6d3e8; color:#426170; font-size:13px; line-height:1.6; }
+    .knowledge-image { width:100%; height:auto; max-height:420px; object-fit:contain; border-radius:12px; border:1px solid #c7dceb; display:block; background:#fff; }
+    .knowledge-caption { margin-top:10px; font-size:13px; color:#597282; }
+    .prompt-box label,.upload-box label { display:block; margin-top:12px; margin-bottom:6px; font-size:14px; font-weight:700; color:var(--green-deep); }
+    .prompt-box label:first-child,.upload-box label:first-child { margin-top:0; }
+    .upload-grid,.form-grid { display:grid; gap:12px; grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .full { grid-column:1 / -1; }
+    textarea,input[type="text"],select,input[type="file"] { width:100%; padding:12px 14px; border:1px solid #c9dde8; border-radius:10px; font-size:15px; font-family:inherit; resize:vertical; background:#fff; }
+    textarea { min-height:88px; }
+    .helper { margin-top:10px; font-size:13px; color:#6f8591; }
+    .save-result { margin-top:12px; font-size:14px; color:var(--green-deep); font-weight:700; }
+    .note { text-align:center; color:#6f8591; font-size:13px; margin-top:22px; }
+    @media (max-width:900px) { .upload-grid,.form-grid,.schedule-item { grid-template-columns:1fr; } .full { grid-column:auto; } .schedule-time { justify-content:flex-start; width:max-content; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="section hero">
+      <span class="tag">DAY 2</span>
+      <h1>2일차 | 자연과 체험이 가득한 날</h1>
+      <p>오늘은 자연, 바다, 공연, 전시를 모두 만나는 가장 다채로운 하루입니다. 보고 느낀 것을 활동별로 바로 제출해 봅시다.</p>
+      <div class="actions">
+        <a class="button secondary" href="index.html">홈으로 돌아가기</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>오늘 일정</h2>
+      <div class="card soft">
+        <ul class="schedule-list">
+          <li class="schedule-item"><span class="schedule-time">08:30</span><span class="schedule-text">조식 후 출발</span></li>
+          <li class="schedule-item activity"><span class="schedule-time">09:30</span><span class="schedule-text">천지연폭포</span></li>
+          <li class="schedule-item activity"><span class="schedule-time">11:00</span><span class="schedule-text">서귀포유람선</span></li>
+          <li class="schedule-item meal"><span class="schedule-time">13:00</span><span class="schedule-text">중식 (애슐리퀸즈 뷔페)</span></li>
+          <li class="schedule-item activity"><span class="schedule-time">15:00</span><span class="schedule-text">아트 서커스</span></li>
+          <li class="schedule-item activity"><span class="schedule-time">16:30</span><span class="schedule-text">홀릭뮤지엄</span></li>
+          <li class="schedule-item meal"><span class="schedule-time">18:00</span><span class="schedule-text">석식 (돈백꽃 BBQ)</span></li>
+          <li class="schedule-item"><span class="schedule-time">19:30</span><span class="schedule-text">아시아호텔 도착 및 기록</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>오늘 활동</h2>
+
+      <div class="card">
+        <h3>천지연폭포</h3>
+        <p>천지연폭포에서는 폭포와 주변 자연을 잘 담은 사진을 찍고 업로드하는 활동을 진행합니다.</p>
+        <ul><li>폭포가 잘 보이게 구도 잡기</li><li>친구들과 안전한 위치에서 사진 찍기</li><li>찍은 사진을 바로 업로드하기</li></ul>
+        <div class="knowledge-box">
+          <div class="knowledge-title">미리 알고 가기</div>
+          <img class="knowledge-image" src="천지연폭포.png" alt="천지연폭포 미리보기 사진">
+          <div class="knowledge-caption">천지연폭포는 제주 자연의 힘과 아름다움을 함께 느낄 수 있는 장소입니다. 물줄기만 보는 것보다 주변 숲, 바위, 물소리까지 함께 관찰하면 사진도 더 풍부해집니다.</div>
+        </div>
+        <div class="upload-box">
+          <div class="upload-grid">
+            <div>
+              <label for="waterfall-grade">학년</label>
+              <select id="waterfall-grade">
+                <option value="">학년 선택</option>
+                <option value="4">4학년</option>
+                <option value="5">5학년</option>
+                <option value="6">6학년</option>
+              </select>
+            </div>
+            <div>
+              <label for="waterfall-class">반</label>
+              <select id="waterfall-class">
+                <option value="">반 선택</option>
+                <option value="1">1반</option>
+                <option value="2">2반</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="waterfall-name">이름</label>
+              <select id="waterfall-name">
+                <option value="">이름 선택</option>
+                <option value="김수하">김수하</option>
+                <option value="김진서">김진서</option>
+                <option value="허주원">허주원</option>
+                <option value="황휘준">황휘준</option>
+                <option value="김율">김율</option>
+                <option value="석현승">석현승</option>
+                <option value="이세은">이세은</option>
+                <option value="정소율">정소율</option>
+                <option value="최사랑">최사랑</option>
+                <option value="오지훈">오지훈</option>
+                <option value="김성원">김성원</option>
+                <option value="김수연">김수연</option>
+                <option value="박현진">박현진</option>
+                <option value="이지호">이지호</option>
+                <option value="황효슬">황효슬</option>
+                <option value="김진희">김진희</option>
+                <option value="장준영">장준영</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="waterfall-photo">사진 선택</label>
+              <input id="waterfall-photo" type="file" accept="image/*">
+            </div>
+          </div>
+          <button class="button" type="button" onclick="uploadWaterfallPhoto()">천지연폭포 사진 업로드</button>
+          <div id="waterfall-upload-result" class="save-result"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>서귀포유람선</h3>
+        <p>유람선에서 본 가장 기억에 남는 풍경이나 느낌을 짧게 기록해 제출합니다.</p>
+        <ul><li>승선 전 안전수칙 확인하기</li><li>가장 기억에 남는 장면 떠올리기</li><li>한두 문장으로 바로 제출하기</li></ul>
+        <div class="knowledge-box">
+          <div class="knowledge-title">미리 알고 가기</div>
+          <img class="knowledge-image" src="서귀포유람선.png" alt="서귀포유람선 미리보기 사진">
+          <div class="knowledge-caption">유람선에서는 육지에서 보지 못한 제주 해안의 모습을 가까이서 볼 수 있습니다. 파도, 바람, 바다 색, 절벽 모양처럼 바다 위에서만 느낄 수 있는 점을 떠올리며 체험하면 좋습니다.</div>
+        </div>
+        <div class="prompt-box">
+          <div class="form-grid">
+            <div>
+              <label for="cruise-grade">학년</label>
+              <select id="cruise-grade">
+                <option value="">학년 선택</option>
+                <option value="4">4학년</option>
+                <option value="5">5학년</option>
+                <option value="6">6학년</option>
+              </select>
+            </div>
+            <div>
+              <label for="cruise-class">반</label>
+              <select id="cruise-class">
+                <option value="">반 선택</option>
+                <option value="1">1반</option>
+                <option value="2">2반</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="cruise-name">이름</label>
+              <select id="cruise-name">
+                <option value="">이름 선택</option>
+                <option value="김수하">김수하</option>
+                <option value="김진서">김진서</option>
+                <option value="허주원">허주원</option>
+                <option value="황휘준">황휘준</option>
+                <option value="김율">김율</option>
+                <option value="석현승">석현승</option>
+                <option value="이세은">이세은</option>
+                <option value="정소율">정소율</option>
+                <option value="최사랑">최사랑</option>
+                <option value="오지훈">오지훈</option>
+                <option value="김성원">김성원</option>
+                <option value="김수연">김수연</option>
+                <option value="박현진">박현진</option>
+                <option value="이지호">이지호</option>
+                <option value="황효슬">황효슬</option>
+                <option value="김진희">김진희</option>
+                <option value="장준영">장준영</option>
+              </select>
+            </div>
+          </div>
+          <label for="cruise-note">유람선에서 가장 기억에 남는 장면</label>
+          <textarea id="cruise-note" placeholder="예: 바다 색이 생각보다 더 짙고 넓게 보여서 놀라웠다."></textarea>
+          <button class="button" type="button" onclick="submitCruiseNote()">서귀포유람선 기록 제출</button>
+          <div id="cruise-submit-result" class="save-result"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>아트 서커스</h3>
+        <p>공연을 보고 가장 인상 깊었던 장면과 그 이유를 짧게 기록해 제출합니다.</p>
+        <ul><li>가장 기억에 남는 공연 장면 떠올리기</li><li>왜 인상 깊었는지 한두 문장으로 쓰기</li><li>바로 제출하기</li></ul>
+        <div class="knowledge-box">
+          <div class="knowledge-title">미리 알고 가기</div>
+          <img class="knowledge-image" src="아트서커스.png" alt="아트 서커스 미리보기 사진">
+          <div class="knowledge-caption">서커스는 단순히 신기한 장면을 보는 것에서 끝나지 않습니다. 몸의 균형, 팀워크, 음악과 동작의 어울림을 함께 보면 공연의 의미를 더 잘 느낄 수 있습니다.</div>
+        </div>
+        <div class="prompt-box">
+          <div class="form-grid">
+            <div>
+              <label for="show-grade">학년</label>
+              <select id="show-grade">
+                <option value="">학년 선택</option>
+                <option value="4">4학년</option>
+                <option value="5">5학년</option>
+                <option value="6">6학년</option>
+              </select>
+            </div>
+            <div>
+              <label for="show-class">반</label>
+              <select id="show-class">
+                <option value="">반 선택</option>
+                <option value="1">1반</option>
+                <option value="2">2반</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="show-name">이름</label>
+              <select id="show-name">
+                <option value="">이름 선택</option>
+                <option value="김수하">김수하</option>
+                <option value="김진서">김진서</option>
+                <option value="허주원">허주원</option>
+                <option value="황휘준">황휘준</option>
+                <option value="김율">김율</option>
+                <option value="석현승">석현승</option>
+                <option value="이세은">이세은</option>
+                <option value="정소율">정소율</option>
+                <option value="최사랑">최사랑</option>
+                <option value="오지훈">오지훈</option>
+                <option value="김성원">김성원</option>
+                <option value="김수연">김수연</option>
+                <option value="박현진">박현진</option>
+                <option value="이지호">이지호</option>
+                <option value="황효슬">황효슬</option>
+                <option value="김진희">김진희</option>
+                <option value="장준영">장준영</option>
+              </select>
+            </div>
+          </div>
+          <label for="show-note">아트 서커스에서 가장 인상 깊었던 장면과 이유</label>
+          <textarea id="show-note" placeholder="예: 공중에서 이어진 공연 장면이 가장 놀라웠다. 높은 곳에서도 균형을 잘 잡는 모습이 신기했다."></textarea>
+          <button class="button" type="button" onclick="submitShowNote()">아트 서커스 기록 제출</button>
+          <div id="show-submit-result" class="save-result"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>홀릭뮤지엄</h3>
+        <p>홀릭뮤지엄에서는 가장 재미있거나 신기한 전시 앞에서 사진을 찍고 업로드하는 활동을 진행합니다.</p>
+        <ul><li>가장 마음에 드는 전시 공간 고르기</li><li>착시나 체험 요소가 잘 보이게 사진 찍기</li><li>찍은 사진을 바로 업로드하기</li></ul>
+        <div class="knowledge-box">
+          <div class="knowledge-title">미리 알고 가기</div>
+          <img class="knowledge-image" src="홀릭뮤지엄.png" alt="홀릭뮤지엄 미리보기 사진">
+          <div class="knowledge-caption">홀릭뮤지엄은 눈으로만 보는 전시가 아니라, 관찰하고 직접 사진을 찍으며 완성되는 공간입니다. 어떤 각도에서 찍어야 더 신기하게 보이는지 생각하며 움직여 보세요.</div>
+        </div>
+        <div class="upload-box">
+          <div class="upload-grid">
+            <div>
+              <label for="museum-grade">학년</label>
+              <select id="museum-grade">
+                <option value="">학년 선택</option>
+                <option value="4">4학년</option>
+                <option value="5">5학년</option>
+                <option value="6">6학년</option>
+              </select>
+            </div>
+            <div>
+              <label for="museum-class">반</label>
+              <select id="museum-class">
+                <option value="">반 선택</option>
+                <option value="1">1반</option>
+                <option value="2">2반</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="museum-name">이름</label>
+              <select id="museum-name">
+                <option value="">이름 선택</option>
+                <option value="김수하">김수하</option>
+                <option value="김진서">김진서</option>
+                <option value="허주원">허주원</option>
+                <option value="황휘준">황휘준</option>
+                <option value="김율">김율</option>
+                <option value="석현승">석현승</option>
+                <option value="이세은">이세은</option>
+                <option value="정소율">정소율</option>
+                <option value="최사랑">최사랑</option>
+                <option value="오지훈">오지훈</option>
+                <option value="김성원">김성원</option>
+                <option value="김수연">김수연</option>
+                <option value="박현진">박현진</option>
+                <option value="이지호">이지호</option>
+                <option value="황효슬">황효슬</option>
+                <option value="김진희">김진희</option>
+                <option value="장준영">장준영</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="museum-photo">사진 선택</label>
+              <input id="museum-photo" type="file" accept="image/*">
+            </div>
+          </div>
+          <button class="button" type="button" onclick="uploadMuseumPhoto()">홀릭뮤지엄 사진 업로드</button>
+          <div id="museum-upload-result" class="save-result"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>오늘 마무리</h2>
+      <div class="card">
+        <p>오늘 가장 재미있었던 활동과 새롭게 알게 된 점을 바로 제출합니다.</p>
+        <div class="prompt-box">
+          <div class="form-grid">
+            <div>
+              <label for="day2-grade">학년</label>
+              <select id="day2-grade">
+                <option value="">학년 선택</option>
+                <option value="4">4학년</option>
+                <option value="5">5학년</option>
+                <option value="6">6학년</option>
+              </select>
+            </div>
+            <div>
+              <label for="day2-class">반</label>
+              <select id="day2-class">
+                <option value="">반 선택</option>
+                <option value="1">1반</option>
+                <option value="2">2반</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="day2-name">이름</label>
+              <select id="day2-name">
+                <option value="">이름 선택</option>
+                <option value="김수하">김수하</option>
+                <option value="김진서">김진서</option>
+                <option value="허주원">허주원</option>
+                <option value="황휘준">황휘준</option>
+                <option value="김율">김율</option>
+                <option value="석현승">석현승</option>
+                <option value="이세은">이세은</option>
+                <option value="정소율">정소율</option>
+                <option value="최사랑">최사랑</option>
+                <option value="오지훈">오지훈</option>
+                <option value="김성원">김성원</option>
+                <option value="김수연">김수연</option>
+                <option value="박현진">박현진</option>
+                <option value="이지호">이지호</option>
+                <option value="황효슬">황효슬</option>
+                <option value="김진희">김진희</option>
+                <option value="장준영">장준영</option>
+              </select>
+            </div>
+          </div>
+          <label for="day2-best">오늘 가장 재미있었던 활동</label>
+          <input id="day2-best" type="text" placeholder="예: 서귀포유람선">
+          <label for="day2-learned">오늘 새롭게 알게 된 점</label>
+          <textarea id="day2-learned" placeholder="예: 자연을 보는 것도 체험이 될 수 있다는 것을 알게 되었다."></textarea>
+          <button class="button" type="button" onclick="submitDay2WrapUp()">2일차 마무리 제출</button>
+          <div id="day2-save-result" class="save-result"></div>
+          <div class="helper">입력한 내용은 사진업로드용 구글시트에 바로 수합됩니다.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <script>
+    var WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxMbMexwZkNk7vJf2rKhtwCo-_2645FhFIZcotUsJv2qTvEZlmGJZwLS1ufEXum4K8S/exec";
+
+    function readFileAsBase64(file) {
+      return new Promise(function (resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          resolve(reader.result.split(",")[1]);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function submitTextRecord(options) {
+      var grade = document.getElementById(options.gradeId).value.trim();
+      var className = document.getElementById(options.classId).value.trim();
+      var studentName = document.getElementById(options.nameId).value.trim();
+      var note = document.getElementById(options.noteId).value.trim();
+      var result = document.getElementById(options.resultId);
+
+      if (!grade || !className || !studentName || !note) {
+        result.textContent = "학년, 반, 이름, 내용을 모두 입력해 주세요.";
+        return;
+      }
+
+      result.textContent = "기록 전송 중입니다...";
+
+      try {
+        var formData = new FormData();
+        formData.append("mode", "text");
+        formData.append("activity", options.activity);
+        formData.append("grade", grade);
+        formData.append("className", className);
+        formData.append("studentName", studentName);
+        formData.append("note", note);
+
+        await fetch(WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+
+        result.textContent = studentName + " 학생 기록을 전송했습니다.";
+      } catch (error) {
+        result.textContent = "기록 전송에 실패했습니다. 웹앱 주소 또는 인터넷 연결을 확인해 주세요.";
+      }
+    }
+
+    function submitCruiseNote() {
+      submitTextRecord({
+        activity: "서귀포유람선",
+        gradeId: "cruise-grade",
+        classId: "cruise-class",
+        nameId: "cruise-name",
+        noteId: "cruise-note",
+        resultId: "cruise-submit-result"
+      });
+    }
+
+    function submitShowNote() {
+      submitTextRecord({
+        activity: "아트 서커스",
+        gradeId: "show-grade",
+        classId: "show-class",
+        nameId: "show-name",
+        noteId: "show-note",
+        resultId: "show-submit-result"
+      });
+    }
+
+    function submitDay2WrapUp() {
+      var grade = document.getElementById("day2-grade").value.trim();
+      var className = document.getElementById("day2-class").value.trim();
+      var studentName = document.getElementById("day2-name").value.trim();
+      var best = document.getElementById("day2-best").value.trim();
+      var learned = document.getElementById("day2-learned").value.trim();
+      var result = document.getElementById("day2-save-result");
+
+      if (!grade || !className || !studentName || !best || !learned) {
+        result.textContent = "학년, 반, 이름, 내용을 모두 입력해 주세요.";
+        return;
+      }
+
+      result.textContent = "기록 전송 중입니다...";
+
+      var formData = new FormData();
+      formData.append("mode", "text");
+      formData.append("activity", "2일차 마무리");
+      formData.append("grade", grade);
+      formData.append("className", className);
+      formData.append("studentName", studentName);
+      formData.append("note", "가장 재미있었던 활동: " + best + "\n새롭게 알게 된 점: " + learned);
+
+      fetch(WEBAPP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      }).then(function () {
+        result.textContent = studentName + " 학생의 2일차 마무리 기록을 전송했습니다.";
+      }).catch(function () {
+        result.textContent = "기록 전송에 실패했습니다. 웹앱 주소 또는 인터넷 연결을 확인해 주세요.";
+      });
+    }
+
+    async function uploadWaterfallPhoto() {
+      var grade = document.getElementById("waterfall-grade").value.trim();
+      var className = document.getElementById("waterfall-class").value.trim();
+      var studentName = document.getElementById("waterfall-name").value.trim();
+      var file = document.getElementById("waterfall-photo").files[0];
+      var result = document.getElementById("waterfall-upload-result");
+
+      if (!grade || !className || !studentName || !file) {
+        result.textContent = "학년, 반, 이름, 사진을 모두 입력해 주세요.";
+        return;
+      }
+
+      result.textContent = "사진 업로드 중입니다...";
+
+      try {
+        var base64Data = await readFileAsBase64(file);
+        var formData = new FormData();
+        formData.append("grade", grade);
+        formData.append("className", className);
+        formData.append("studentName", studentName);
+        formData.append("activity", "천지연폭포");
+        formData.append("fileName", file.name);
+        formData.append("mimeType", file.type || "image/jpeg");
+        formData.append("base64Data", base64Data);
+
+        await fetch(WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+
+        result.textContent = studentName + " 학생 사진 업로드를 전송했습니다.";
+        document.getElementById("waterfall-photo").value = "";
+      } catch (error) {
+        result.textContent = "사진 업로드에 실패했습니다. 웹앱 주소 또는 인터넷 연결을 확인해 주세요.";
+      }
+    }
+
+    async function uploadMuseumPhoto() {
+      var grade = document.getElementById("museum-grade").value.trim();
+      var className = document.getElementById("museum-class").value.trim();
+      var studentName = document.getElementById("museum-name").value.trim();
+      var file = document.getElementById("museum-photo").files[0];
+      var result = document.getElementById("museum-upload-result");
+
+      if (!grade || !className || !studentName || !file) {
+        result.textContent = "학년, 반, 이름, 사진을 모두 입력해 주세요.";
+        return;
+      }
+
+      result.textContent = "사진 업로드 중입니다...";
+
+      try {
+        var base64Data = await readFileAsBase64(file);
+        var formData = new FormData();
+        formData.append("grade", grade);
+        formData.append("className", className);
+        formData.append("studentName", studentName);
+        formData.append("activity", "홀릭뮤지엄");
+        formData.append("fileName", file.name);
+        formData.append("mimeType", file.type || "image/jpeg");
+        formData.append("base64Data", base64Data);
+
+        await fetch(WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+
+        result.textContent = studentName + " 학생 사진 업로드를 전송했습니다.";
+        document.getElementById("museum-photo").value = "";
+      } catch (error) {
+        result.textContent = "사진 업로드에 실패했습니다. 웹앱 주소 또는 인터넷 연결을 확인해 주세요.";
+      }
+    }
+  </script>
+</body>
+</html>

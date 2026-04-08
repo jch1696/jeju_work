@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3일차 | 제주도 디지털 워크북</title>
+  <style>
+    :root { --bg:#f7fbfd; --card:#fff; --line:#dbe8ef; --orange:#d28f35; --orange-deep:#9c671e; --orange-soft:#fff7ea; --ink:#23323b; --soft:#5f7480; --shadow:0 8px 18px rgba(35,50,59,.06); --radius:18px; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif; color:var(--ink); background:linear-gradient(180deg,#fff8ef 0%,#f7fbfd 100%); }
+    .page { width:min(980px, calc(100% - 32px)); margin:0 auto; padding:24px 0 48px; }
+    .section { margin-top:20px; padding:24px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); }
+    .hero { background:linear-gradient(180deg,#fff6e9 0%,#fff 100%); }
+    .tag { display:inline-block; padding:6px 12px; border-radius:999px; background:var(--orange); color:#fff; font-size:13px; font-weight:700; }
+    h1 { margin:16px 0 10px; font-size:clamp(30px,4vw,42px); color:var(--orange-deep); }
+    h2 { margin:0 0 8px; font-size:24px; color:var(--orange-deep); }
+    h3 { margin:0 0 8px; font-size:20px; }
+    p { margin:0; color:var(--soft); line-height:1.7; }
+    ul { margin:12px 0 0; padding-left:18px; line-height:1.75; }
+    .button { display:inline-block; margin-top:16px; padding:12px 16px; border-radius:12px; background:var(--orange); color:#fff; text-decoration:none; font-size:14px; font-weight:700; border:0; cursor:pointer; }
+    .button.secondary { background:#fff; color:var(--orange); border:1px solid var(--line); }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .card { padding:18px; border:1px solid var(--line); border-radius:16px; background:#fff; }
+    .card.soft { background:var(--orange-soft); }
+    .card + .card { margin-top:14px; }
+    .schedule-list { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+    .schedule-item { display:flex; gap:12px; align-items:center; padding:12px 14px; border-radius:12px; background:#fff; border:1px solid var(--line); }
+    .schedule-time { min-width:56px; font-weight:700; color:var(--orange-deep); }
+    .schedule-text { color:var(--ink); }
+    .schedule-item.meal { background:#fff1f1; }
+    .schedule-item.meal .schedule-time { color:#b55454; }
+    .schedule-item.activity { background:#e8f4ff; }
+    .schedule-item.activity .schedule-time { color:#2d6ea3; }
+    .schedule-time.departure { color:#c84b4b; background:#ffe1e1; padding:4px 8px; border-radius:10px; }
+    .prompt-box,.upload-box { margin-top:14px; padding:16px; border:1px solid var(--line); border-radius:14px; background:#fffdfa; }
+    .knowledge-box { margin-top:14px; padding:16px; border:1px solid #d7dfeb; border-radius:14px; background:linear-gradient(180deg,#f7fbfe 0%,#eef7fc 100%); }
+    .knowledge-title { font-size:14px; font-weight:700; color:var(--orange-deep); margin-bottom:10px; }
+    .knowledge-visual { min-height:110px; padding:14px; border-radius:12px; background:linear-gradient(135deg,#dcebfb 0%,#f6fbff 100%); border:1px dashed #b6d3e8; color:#426170; font-size:13px; line-height:1.6; }
+    .knowledge-image { width:100%; height:auto; max-height:420px; object-fit:contain; border-radius:12px; border:1px solid #c7dceb; display:block; background:#fff; }
+    .knowledge-caption { margin-top:10px; font-size:13px; color:#597282; }
+    .prompt-box label,.upload-box label { display:block; margin-top:12px; margin-bottom:6px; font-size:14px; font-weight:700; color:var(--orange-deep); }
+    .prompt-box label:first-child,.upload-box label:first-child { margin-top:0; }
+    .form-grid,.upload-grid { display:grid; gap:12px; grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .full { grid-column:1 / -1; }
+    textarea,input[type="text"],select,input[type="file"] { width:100%; padding:12px 14px; border:1px solid #e0d5c3; border-radius:10px; font-size:15px; font-family:inherit; resize:vertical; background:#fff; }
+    textarea { min-height:88px; }
+    .save-result { margin-top:12px; font-size:14px; color:var(--orange-deep); font-weight:700; }
+    .note { text-align:center; color:#6f8591; font-size:13px; margin-top:22px; }
+    @media (max-width:900px) { .form-grid,.upload-grid { grid-template-columns:1fr; } .full { grid-column:auto; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="section hero">
+      <span class="tag">DAY 3</span>
+      <h1>3일차 | 마지막 추억을 담는 날</h1>
+      <p>여행의 마지막 날입니다. 마지막 체험과 박물관 관람을 마친 뒤 여행 전체를 돌아보며 마지막 기록을 제출해 봅시다.</p>
+      <div class="actions">
+        <a class="button secondary" href="index.html">홈으로 돌아가기</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>오늘 일정</h2>
+      <div class="card soft">
+        <ul class="schedule-list">
+          <li class="schedule-item"><span class="schedule-time">09:00</span><span class="schedule-text">숙소 출발</span></li>
+          <li class="schedule-item activity"><span class="schedule-time">09:20</span><span class="schedule-text">테마파크 툰</span></li>
+          <li class="schedule-item meal"><span class="schedule-time">11:30</span><span class="schedule-text">중식 (삼대국수)</span></li>
+          <li class="schedule-item activity"><span class="schedule-time">12:30</span><span class="schedule-text">제주민속자연사 박물관</span></li>
+          <li class="schedule-item"><span class="schedule-time">14:00</span><span class="schedule-text">공항 도착</span></li>
+          <li class="schedule-item"><span class="schedule-time departure">15:55</span><span class="schedule-text">제주공항 출발</span></li>
+          <li class="schedule-item"><span class="schedule-time">17:00</span><span class="schedule-text">대구공항 도착, 성주 출발</span></li>
+          <li class="schedule-item"><span class="schedule-time">18:00</span><span class="schedule-text">학교 도착 귀가</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>오늘 활동</h2>
+      <div class="card">
+        <h3>테마파크 툰</h3>
+        <p>테마파크 툰에서는 마지막 체험 사진을 찍고 바로 업로드합니다.</p>
+        <ul><li>가장 기억에 남는 공간 고르기</li><li>친구들과 안전하게 사진 찍기</li><li>찍은 사진을 바로 업로드하기</li></ul>
+        <div class="knowledge-box">
+          <div class="knowledge-title">미리 알고 가기</div>
+          <img class="knowledge-image" src="테마파크툰.png" alt="테마파크 툰 미리보기 사진">
+          <div class="knowledge-caption">테마파크 툰은 마지막 체험 장소인 만큼 즐거운 분위기와 친구들과의 추억을 함께 남기기 좋은 공간입니다. 장면이 재미있게 보이는 배경과 표정을 같이 담아 보세요.</div>
+        </div>
+        <div class="upload-box">
+          <div class="upload-grid">
+            <div>
+              <label for="toon-grade">학년</label>
+              <select id="toon-grade">
+                <option value="">학년 선택</option>
+                <option value="4">4학년</option>
+                <option value="5">5학년</option>
+                <option value="6">6학년</option>
+              </select>
+            </div>
+            <div>
+              <label for="toon-class">반</label>
+              <select id="toon-class">
+                <option value="">반 선택</option>
+                <option value="1">1반</option>
+                <option value="2">2반</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="toon-name">이름</label>
+              <select id="toon-name">
+                <option value="">이름 선택</option>
+                <option value="김수하">김수하</option>
+                <option value="김진서">김진서</option>
+                <option value="허주원">허주원</option>
+                <option value="황휘준">황휘준</option>
+                <option value="김율">김율</option>
+                <option value="석현승">석현승</option>
+                <option value="이세은">이세은</option>
+                <option value="정소율">정소율</option>
+                <option value="최사랑">최사랑</option>
+                <option value="오지훈">오지훈</option>
+                <option value="김성원">김성원</option>
+                <option value="김수연">김수연</option>
+                <option value="박현진">박현진</option>
+                <option value="이지호">이지호</option>
+                <option value="황효슬">황효슬</option>
+                <option value="김진희">김진희</option>
+                <option value="장준영">장준영</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="toon-photo">사진 선택</label>
+              <input id="toon-photo" type="file" accept="image/*">
+            </div>
+          </div>
+          <button class="button" type="button" onclick="uploadToonPhoto()">테마파크 툰 사진 업로드</button>
+          <div id="toon-submit-result" class="save-result"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>제주민속자연사 박물관</h3>
+        <p>제주의 자연과 생활 문화를 살펴보며 새롭게 알게 된 사실을 기록해 봅시다.</p>
+        <ul><li>가장 인상 깊은 전시 한 가지 고르기</li><li>제주의 자연 또는 문화 특징 적기</li><li>기억에 남는 내용을 한 줄로 남기기</li></ul>
+        <div class="knowledge-box">
+          <div class="knowledge-title">미리 알고 가기</div>
+          <img class="knowledge-image" src="민속자연사 박물관.png" alt="제주민속자연사 박물관 미리보기 사진">
+          <div class="knowledge-caption">제주민속자연사 박물관에서는 제주의 화산 지형, 동식물, 옛사람들의 생활 모습을 함께 볼 수 있습니다. 전시를 보며 제주만의 특징을 하나씩 찾아보세요.</div>
+        </div>
+        <div class="prompt-box">
+          <div class="form-grid">
+            <div>
+              <label for="museum-grade">학년</label>
+              <select id="museum-grade">
+                <option value="">학년 선택</option>
+                <option value="4">4학년</option>
+                <option value="5">5학년</option>
+                <option value="6">6학년</option>
+              </select>
+            </div>
+            <div>
+              <label for="museum-class">반</label>
+              <select id="museum-class">
+                <option value="">반 선택</option>
+                <option value="1">1반</option>
+                <option value="2">2반</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="museum-name">이름</label>
+              <select id="museum-name">
+                <option value="">이름 선택</option>
+                <option value="김수하">김수하</option>
+                <option value="김진서">김진서</option>
+                <option value="허주원">허주원</option>
+                <option value="황휘준">황휘준</option>
+                <option value="김율">김율</option>
+                <option value="석현승">석현승</option>
+                <option value="이세은">이세은</option>
+                <option value="정소율">정소율</option>
+                <option value="최사랑">최사랑</option>
+                <option value="오지훈">오지훈</option>
+                <option value="김성원">김성원</option>
+                <option value="김수연">김수연</option>
+                <option value="박현진">박현진</option>
+                <option value="이지호">이지호</option>
+                <option value="황효슬">황효슬</option>
+                <option value="김진희">김진희</option>
+                <option value="장준영">장준영</option>
+              </select>
+            </div>
+          </div>
+          <label for="museum-exhibit">가장 인상 깊은 전시</label>
+          <input id="museum-exhibit" type="text" placeholder="예: 제주 화산과 바위 전시">
+          <label for="museum-feature">제주의 자연 또는 문화 특징</label>
+          <textarea id="museum-feature" placeholder="예: 제주에는 화산 활동으로 생긴 지형과 옛사람들의 생활 도구가 남아 있었다."></textarea>
+          <label for="museum-memory">기억에 남는 내용 한 줄</label>
+          <input id="museum-memory" type="text" placeholder="예: 제주를 더 깊이 이해하게 된 시간이었다.">
+          <button class="button" type="button" onclick="submitMuseumReview()">박물관 기록 제출</button>
+          <div id="museum-submit-result" class="save-result"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>여행 전체 돌아보기</h3>
+        <p>이번 제주 여행에서 본 것, 배운 것, 친구와 함께해서 좋았던 점을 정리해 제출합니다.</p>
+        <div class="prompt-box">
+          <div class="form-grid">
+            <div>
+              <label for="trip-grade">학년</label>
+              <select id="trip-grade">
+                <option value="">학년 선택</option>
+                <option value="4">4학년</option>
+                <option value="5">5학년</option>
+                <option value="6">6학년</option>
+              </select>
+            </div>
+            <div>
+              <label for="trip-class">반</label>
+              <select id="trip-class">
+                <option value="">반 선택</option>
+                <option value="1">1반</option>
+                <option value="2">2반</option>
+              </select>
+            </div>
+            <div class="full">
+              <label for="trip-name">이름</label>
+              <select id="trip-name">
+                <option value="">이름 선택</option>
+                <option value="김수하">김수하</option>
+                <option value="김진서">김진서</option>
+                <option value="허주원">허주원</option>
+                <option value="황휘준">황휘준</option>
+                <option value="김율">김율</option>
+                <option value="석현승">석현승</option>
+                <option value="이세은">이세은</option>
+                <option value="정소율">정소율</option>
+                <option value="최사랑">최사랑</option>
+                <option value="오지훈">오지훈</option>
+                <option value="김성원">김성원</option>
+                <option value="김수연">김수연</option>
+                <option value="박현진">박현진</option>
+                <option value="이지호">이지호</option>
+                <option value="황효슬">황효슬</option>
+                <option value="김진희">김진희</option>
+                <option value="장준영">장준영</option>
+              </select>
+            </div>
+          </div>
+          <label for="trip-seen">제주에서 새롭게 본 것</label>
+          <input id="trip-seen" type="text" placeholder="예: 제주 바다의 색과 폭포의 모습">
+          <label for="trip-learned">제주에서 배운 점</label>
+          <textarea id="trip-learned" placeholder="예: 자연을 아끼는 방법과 친구와 협력하는 태도를 배웠다."></textarea>
+          <label for="trip-friends">친구와 함께해서 좋았던 순간</label>
+          <textarea id="trip-friends" placeholder="예: 다 같이 같은 장면을 보고 웃었던 순간이 즐거웠다."></textarea>
+          <label for="trip-growth">이번 여행을 통해 성장한 점</label>
+          <input id="trip-growth" type="text" placeholder="예: 스스로 챙기고 기록하는 힘이 생겼다.">
+          <button class="button" type="button" onclick="submitTripReview()">여행 전체 돌아보기 제출</button>
+          <div id="trip-submit-result" class="save-result"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <script>
+    var WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxMbMexwZkNk7vJf2rKhtwCo-_2645FhFIZcotUsJv2qTvEZlmGJZwLS1ufEXum4K8S/exec";
+
+    function readFileAsBase64(file) {
+      return new Promise(function (resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          resolve(reader.result.split(",")[1]);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function submitTextRecord(options) {
+      var grade = document.getElementById(options.gradeId).value.trim();
+      var className = document.getElementById(options.classId).value.trim();
+      var studentName = document.getElementById(options.nameId).value.trim();
+      var note = options.buildNote();
+      var result = document.getElementById(options.resultId);
+
+      if (!grade || !className || !studentName || !note) {
+        result.textContent = "학년, 반, 이름, 내용을 모두 입력해 주세요.";
+        return;
+      }
+
+      result.textContent = "기록 전송 중입니다...";
+
+      try {
+        var formData = new FormData();
+        formData.append("mode", "text");
+        formData.append("activity", options.activity);
+        formData.append("grade", grade);
+        formData.append("className", className);
+        formData.append("studentName", studentName);
+        formData.append("note", note);
+
+        await fetch(WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+
+        result.textContent = studentName + " 학생 기록을 전송했습니다.";
+      } catch (error) {
+        result.textContent = "기록 전송에 실패했습니다. 인터넷 연결 또는 웹앱 주소를 확인해 주세요.";
+      }
+    }
+
+    async function uploadToonPhoto() {
+      var grade = document.getElementById("toon-grade").value.trim();
+      var className = document.getElementById("toon-class").value.trim();
+      var studentName = document.getElementById("toon-name").value.trim();
+      var file = document.getElementById("toon-photo").files[0];
+      var result = document.getElementById("toon-submit-result");
+
+      if (!grade || !className || !studentName || !file) {
+        result.textContent = "학년, 반, 이름, 사진을 모두 입력해 주세요.";
+        return;
+      }
+
+      result.textContent = "사진 업로드 중입니다...";
+
+      try {
+        var base64Data = await readFileAsBase64(file);
+        var formData = new FormData();
+        formData.append("grade", grade);
+        formData.append("className", className);
+        formData.append("studentName", studentName);
+        formData.append("activity", "테마파크 툰");
+        formData.append("fileName", file.name);
+        formData.append("mimeType", file.type || "image/jpeg");
+        formData.append("base64Data", base64Data);
+
+        await fetch(WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+
+        result.textContent = studentName + " 학생 사진 업로드를 전송했습니다.";
+      } catch (error) {
+        result.textContent = "사진 업로드에 실패했습니다. 인터넷 연결 또는 웹앱 주소를 확인해 주세요.";
+      }
+    }
+
+    function submitMuseumReview() {
+      submitTextRecord({
+        gradeId: "museum-grade",
+        classId: "museum-class",
+        nameId: "museum-name",
+        resultId: "museum-submit-result",
+        activity: "제주민속자연사 박물관",
+        buildNote: function () {
+          var exhibit = document.getElementById("museum-exhibit").value.trim();
+          var feature = document.getElementById("museum-feature").value.trim();
+          var memory = document.getElementById("museum-memory").value.trim();
+
+          if (!exhibit || !feature || !memory) {
+            return "";
+          }
+
+          return [
+            "가장 인상 깊은 전시: " + exhibit,
+            "제주의 자연 또는 문화 특징: " + feature,
+            "기억에 남는 내용 한 줄: " + memory
+          ].join("\n");
+        }
+      });
+    }
+
+    function submitTripReview() {
+      submitTextRecord({
+        activity: "여행 전체 돌아보기",
+        gradeId: "trip-grade",
+        classId: "trip-class",
+        nameId: "trip-name",
+        resultId: "trip-submit-result",
+        buildNote: function () {
+          var seen = document.getElementById("trip-seen").value.trim();
+          var learned = document.getElementById("trip-learned").value.trim();
+          var friends = document.getElementById("trip-friends").value.trim();
+          var growth = document.getElementById("trip-growth").value.trim();
+          if (!seen || !learned || !friends || !growth) {
+            return "";
+          }
+          return "제주에서 새롭게 본 것: " + seen + "\n제주에서 배운 점: " + learned + "\n친구와 함께해서 좋았던 순간: " + friends + "\n이번 여행을 통해 성장한 점: " + growth;
+        }
+      });
+    }
+
+  </script>
+</body>
+</html>

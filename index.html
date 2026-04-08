@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제주 디지털 워크북</title>
+  <style>
+    :root { --bg:#f7fbfd; --card:#fff; --line:#dbe8ef; --sea:#2f84b7; --sea-deep:#1c5f88; --sea-soft:#eaf5fb; --mint-soft:#edf8f3; --sand-soft:#fff7ea; --ink:#23323b; --soft:#5f7480; --shadow:0 8px 18px rgba(35,50,59,.06); --radius:18px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif; color:var(--ink); background:radial-gradient(circle at top right, rgba(47,132,183,.08), transparent 24%), linear-gradient(180deg,#f4fbff 0%,#f7fbfd 45%,#fff 100%); }
+    .page { width:min(1100px, calc(100% - 32px)); margin:0 auto; padding:24px 0 48px; }
+    .section { margin-top:20px; padding:24px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); }
+    .hero { background:linear-gradient(180deg,#eef8fd 0%,#fff 100%); }
+    .eyebrow,.label { display:inline-block; padding:6px 12px; border-radius:999px; font-size:13px; font-weight:700; }
+    .eyebrow { background:var(--sea-soft); color:var(--sea); }
+    .label { margin-bottom:8px; background:#f1f6f9; color:#55707e; font-size:12px; }
+    h1 { margin:16px 0 10px; font-size:clamp(30px,4vw,44px); color:var(--sea-deep); }
+    h2 { margin:0 0 8px; font-size:28px; color:var(--sea-deep); }
+    h3 { margin:0 0 8px; font-size:22px; }
+    p { margin:0; color:var(--soft); line-height:1.7; }
+    ul { margin:12px 0 0; padding-left:18px; color:var(--ink); line-height:1.75; }
+    .actions,.chips { display:flex; flex-wrap:wrap; gap:10px; }
+    .actions { margin-top:20px; }
+    .button,.chip { display:inline-block; padding:12px 16px; border-radius:12px; font-size:14px; font-weight:700; text-decoration:none; }
+    .button.primary { background:var(--sea); color:#fff; }
+    .button.secondary { background:#fff; color:var(--sea); border:1px solid var(--line); }
+    .chip { padding:8px 12px; background:#fff; color:var(--sea); border:1px solid var(--line); }
+    .section-head { margin-bottom:16px; }
+    .grid-2,.grid-3,.grid-4 { display:grid; gap:14px; }
+    .grid-2 { grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns:repeat(3, minmax(0,1fr)); }
+    .grid-4 { grid-template-columns:repeat(4, minmax(0,1fr)); }
+    .card { padding:18px; border:1px solid var(--line); border-radius:16px; background:#fff; }
+    .card.sky { background:var(--sea-soft); }
+    .card.mint { background:var(--mint-soft); }
+    .card.sand { background:var(--sand-soft); }
+    .tag { display:inline-block; padding:5px 10px; border-radius:999px; font-size:12px; font-weight:700; color:#fff; margin-bottom:10px; }
+    .day1 { background:#3a98c9; } .day2 { background:#3a9c7d; } .day3 { background:#d28f35; }
+    .mini-button { display:inline-block; margin-top:12px; padding:10px 14px; border-radius:10px; background:var(--sea); color:#fff; font-size:13px; font-weight:700; text-decoration:none; }
+    .timeline { display:grid; gap:12px; }
+    .timeline-item { display:grid; grid-template-columns:92px 1fr; gap:14px; align-items:start; padding:14px; border-radius:14px; background:#f9fcfe; border:1px solid var(--line); }
+    .time { font-weight:700; color:var(--sea-deep); }
+    .time.departure { color:#c84b4b; }
+    .checklist { display:grid; gap:10px; margin-top:14px; }
+    .check-item { display:flex; gap:10px; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#f9fcfe; }
+    .check-item input { width:18px; height:18px; accent-color:var(--sea); }
+    .note-box { margin-top:14px; padding:16px; border-radius:14px; background:#f9fcfe; border:1px dashed #bfd8e5; }
+    .note { font-size:13px; color:#6f8591; text-align:center; margin-top:22px; }
+    @media (max-width:900px) { .grid-2,.grid-3,.grid-4,.timeline-item { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="section hero">
+      <span class="eyebrow">2026 제주도 테마형 현장체험학습</span>
+      <h1>제주도 디지털 워크북</h1>
+      <p>보고, 느끼고, 함께 기록하는 우리들의 제주 이야기입니다. 날짜를 선택해 활동을 확인하고 기록을 남겨 보세요.</p>
+      <div class="actions">
+        <a class="button primary" href="#days">날짜별 워크북 열기</a>
+        <a class="button secondary" href="#schedule">전체 일정 보기</a>
+        <a class="button secondary" href="#guide">준비물 · 안전 보기</a>
+        <a class="button secondary" href="final.html">최종 소감 가기</a>
+      </div>
+    </section>
+
+    <section class="section" id="days">
+      <div class="section-head">
+        <span class="label">메인 홈</span>
+        <h2>날짜별 바로가기</h2>
+        <p>날짜를 선택하면 그날의 일정과 활동을 확인할 수 있습니다.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <span class="tag day1">DAY 1</span>
+          <h3>제주를 처음 만나는 날</h3>
+          <p>공항 이동부터 스누피가든, 다이나믹 메이즈까지 이어지는 설레는 첫날입니다.</p>
+          <ul><li>스누피가든 활동 사이트 바로가기</li><li>다이나믹 메이즈 기록 제출</li><li>1일차 마무리 바로 제출</li></ul>
+          <a class="mini-button" href="day1.html">1일차 워크북 열기</a>
+        </article>
+        <article class="card">
+          <span class="tag day2">DAY 2</span>
+          <h3>자연과 체험이 가득한 날</h3>
+          <p>천지연폭포, 유람선, 공연과 전시까지 가장 다채로운 경험이 이어지는 날입니다.</p>
+          <ul><li>사진 업로드 활동 진행</li><li>유람선과 서커스 기록 제출</li><li>2일차 마무리 바로 제출</li></ul>
+          <a class="mini-button" href="day2.html">2일차 워크북 열기</a>
+        </article>
+        <article class="card">
+          <span class="tag day3">DAY 3</span>
+          <h3>마지막 추억을 담는 날</h3>
+          <p>마지막 체험과 박물관 관람을 마친 뒤 여행 전체를 돌아보며 마무리하는 날입니다.</p>
+          <ul><li>테마파크 툰 사진 업로드</li><li>박물관 기록 제출</li><li>여행 전체 돌아보기 제출</li></ul>
+          <a class="mini-button" href="day3.html">3일차 워크북 열기</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="schedule">
+      <div class="section-head">
+        <h2>3일 전체 일정표</h2>
+        <p>3일 동안의 전체 일정을 한눈에 볼 수 있습니다.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card sky">
+          <span class="tag day1">DAY 1</span>
+          <div class="timeline">
+            <div class="timeline-item"><div class="time">07:20</div><div>월항지방분교 집결</div></div>
+            <div class="timeline-item"><div class="time departure">10:10</div><div>대구공항 출발</div></div>
+            <div class="timeline-item"><div class="time">14:00</div><div>스누피가든</div></div>
+            <div class="timeline-item"><div class="time">16:00</div><div>다이나믹 메이즈</div></div>
+          </div>
+        </div>
+        <div class="card mint">
+          <span class="tag day2">DAY 2</span>
+          <div class="timeline">
+            <div class="timeline-item"><div class="time">09:30</div><div>천지연폭포</div></div>
+            <div class="timeline-item"><div class="time">11:00</div><div>서귀포유람선</div></div>
+            <div class="timeline-item"><div class="time">15:00</div><div>아트 서커스</div></div>
+            <div class="timeline-item"><div class="time">16:30</div><div>홀릭뮤지엄</div></div>
+          </div>
+        </div>
+        <div class="card sand">
+          <span class="tag day3">DAY 3</span>
+          <div class="timeline">
+            <div class="timeline-item"><div class="time">09:20</div><div>테마파크 툰</div></div>
+            <div class="timeline-item"><div class="time">12:30</div><div>제주민속자연사 박물관</div></div>
+            <div class="timeline-item"><div class="time departure">15:55</div><div>제주공항 출발</div></div>
+            <div class="timeline-item"><div class="time">18:00</div><div>학교 도착 귀가</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="guide">
+      <div class="section-head">
+        <span class="label">학생 안내</span>
+        <h2>준비물과 안전수칙</h2>
+        <p>출발 전에 준비물과 약속을 한 번 더 확인해 보세요.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>출발 전 준비물</h3>
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox"> 개인 가방과 물 챙기기</label>
+            <label class="check-item"><input type="checkbox"> 필기도구와 휴대기기 확인</label>
+            <label class="check-item"><input type="checkbox"> 보조배터리와 개인 상비약 챙기기</label>
+            <label class="check-item"><input type="checkbox"> 활동하기 편한 복장과 양말 준비</label>
+          </div>
+        </div>
+        <div class="card">
+          <h3>꼭 지킬 약속</h3>
+          <ul><li>이동 중에는 자리를 함부로 이탈하지 않기</li><li>차량과 유람선에서는 안전수칙을 먼저 확인하기</li><li>친구와 장난보다 배려를 먼저 생각하기</li><li>문제가 생기면 바로 선생님께 알리기</li></ul>
+          <div class="note-box">오늘의 다짐 한 줄: 즐겁게 체험하고, 안전하게 돌아오기</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
