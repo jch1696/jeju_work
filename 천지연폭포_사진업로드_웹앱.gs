@@ -110,6 +110,7 @@ function getTextSheetName_(activity) {
     "서귀포유람선": "서귀포유람선",
     "아트 서커스": "아트 서커스",
     "2일차 마무리": "2일차 마무리",
+    "제주민속자연사 박물관": "제주민속자연사 박물관",
     "여행 전체 돌아보기": "여행 전체 돌아보기",
     "최종 소감": "최종 소감"
   };
@@ -155,16 +156,50 @@ function appendRow_(sheetName, rowValues, headerValues) {
 
   var spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
   var sheet = spreadsheet.getSheetByName(sheetName);
+  var isNewSheet = false;
 
   if (!sheet) {
     sheet = spreadsheet.insertSheet(sheetName);
+    isNewSheet = true;
   }
 
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(headerValues);
+    formatRecordSheet_(sheet, headerValues.length);
+  } else if (isNewSheet) {
+    formatRecordSheet_(sheet, headerValues.length);
   }
 
   sheet.appendRow(rowValues);
+}
+
+function formatRecordSheet_(sheet, columnCount) {
+  var headerRange = sheet.getRange(1, 1, 1, columnCount);
+
+  headerRange
+    .setFontWeight("bold")
+    .setFontSize(14)
+    .setHorizontalAlignment("center")
+    .setVerticalAlignment("middle")
+    .setBackground("#dbe8fb")
+    .setFontColor("#173f73")
+    .setBorder(true, true, true, true, true, true, "#93b4df", SpreadsheetApp.BorderStyle.SOLID);
+
+  sheet.setFrozenRows(1);
+
+  if (sheet.getFilter()) {
+    sheet.getFilter().remove();
+  }
+  sheet.getRange(1, 1, Math.max(sheet.getLastRow(), 1), columnCount).createFilter();
+
+  sheet.setRowHeight(1, 42);
+  sheet.getRange(1, 1, sheet.getMaxRows(), columnCount).setWrap(true);
+  sheet.getRange(2, 1, Math.max(sheet.getMaxRows() - 1, 1), 1).setNumberFormat("yyyy. m. d 오전/오후 h:mm:ss");
+
+  var widths = [170, 120, 80, 80, 120, 520, 160, 220];
+  for (var i = 1; i <= columnCount; i += 1) {
+    sheet.setColumnWidth(i, widths[i - 1] || 140);
+  }
 }
 
 function jsonOutput(obj) {
